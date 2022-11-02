@@ -1,3 +1,25 @@
+const userData = [
+    {
+        name: 'Jasmine',
+        email: 'jasmine@testemail.com'
+    },
+
+    {
+        name: 'Charlie',
+        email: 'charlie@email.com'
+    },
+
+    {
+        name: 'Danny',
+        email: 'danny@gmail.com'
+    },
+
+    {
+        name: 'Mary',
+        email: 'mary@yahoo.com'
+    }
+]
+
 const cheeseData = [
     {
         title: 'American', 
@@ -17,6 +39,20 @@ const cheeseData = [
     {
         title: 'Burrata',
         description: 'Burrata is a fresh cheese featuring a thin layer of cheese with a mixture of stringy curd and fresh cream on the inside. It has a rich flavor and goes well with salads, crusty bread and Italian dishes.'
+    }
+]
+
+const boardData = [
+    {
+        type: 'Rich Flavor Board',
+        description: 'Featuring rich cheese flavors and strong tastes',
+        rating: 7
+    },
+
+    {
+        type: 'Variety Cheese Board',
+        description: 'A variety of cheeses - from french cheeses to american',
+        rating: 10
     }
 ]
 
