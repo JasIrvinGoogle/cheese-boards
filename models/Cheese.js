@@ -7,4 +7,4 @@ let Cheese = describe('cheese', {
 
 module.exports = {
     Cheese
-}
+};
