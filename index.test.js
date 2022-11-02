@@ -85,4 +85,36 @@ describe('User, Board & Cheese Models', () => {
         expect(readBoard2[1].description).toEqual('A variety of cheeses - from french cheeses to american');
         expect(readBoard2[1].rating).toEqual(10); 
     })
+
+    // Update Test - CRUD
+    test('Can Update Users - Update User Test', async () => {
+        const oldUser = await User.findAll(); 
+        const updatedUser = await oldUser[0].update({name:'Jenny'}); 
+        const updatedEmail = await oldUser[0].update({email:'jenny@newtest.com'});
+        expect(updatedUser.name).toBe('Jenny'); 
+        expect(updatedUser.name).not.toBe('Jasmine');
+        expect(updatedUser.email).toBe('jenny@newtest.com');
+        expect(updatedEmail.email).not.toBe('jasmine@testemail.com');
+    })
+
+    test('Can Update Cheese - Update Cheese Test', async () => {
+        const oldCheese = await Cheese.findAll(); 
+        const updatedCheese = await oldCheese[0].update({title:'Bleu Cheese'}); 
+        const updatedScription = await oldCheese[0].update({description: 'Stinky Cheese'}); 
+        expect(updatedCheese.title).toBe('Bleu Cheese'); 
+        expect(updatedCheese.title).not.toBe('American');
+        expect(updatedScription.description).toBe('Stinky Cheese'); 
+    })
+
+    test('Can Update Board - Board Test', async () => {
+        const oldBoard = await Board.findAll(); 
+        const updatedBoard = await oldBoard[0].update({type: 'Crazy Board'}); 
+        const updatedDescription = await oldBoard[0].update({description: 'Crazy Cheeses'});
+        const updatedRating = await oldBoard[0].update({rating: 4}); 
+        expect(updatedBoard.type).toBe('Crazy Board'); 
+        expect(updatedBoard.type).not.toBe('Rich Flavor Board');
+        expect(updatedDescription.description).toBe('Crazy Cheeses');
+        expect(updatedRating.rating).toBe(4); 
+        expect(updatedRating.rating).not.toBe(7);
+    })
 })
