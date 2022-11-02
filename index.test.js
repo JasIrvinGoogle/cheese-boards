@@ -117,4 +117,27 @@ describe('User, Board & Cheese Models', () => {
         expect(updatedRating.rating).toBe(4); 
         expect(updatedRating.rating).not.toBe(7);
     })
+
+    // Delete Test - CRUD
+    test('Can Delete User - Delete Test', async () => {
+        const findingUser = await User.findAll(); 
+        const deletedUser = await findingUser[0].destroy(); 
+        expect(deletedUser.name).toBe('Jenny'); 
+        expect(deletedUser.email).toBe('jenny@newtest.com');
+    })
+
+    test('Can Delete Cheese - Delete Test', async () => {
+        const findingCheese = await Cheese.findAll();
+        const deletedCheese = await findingCheese[0].destroy();
+        expect(deletedCheese.title).toBe('Bleu Cheese');
+        expect(deletedCheese.description).toBe('Stinky Cheese'); 
+    })
+
+    test('Can Delete Boards - Delete Test', async () => {
+        const findingBoard = await Board.findAll(); 
+        const deletedBoard = await findingBoard[0].destroy(); 
+        expect(deletedBoard.type).toBe('Crazy Board');
+        expect(deletedBoard.description).toBe('Crazy Cheeses');
+        expect(deletedBoard.rating).toBe(4);
+    })
 })
