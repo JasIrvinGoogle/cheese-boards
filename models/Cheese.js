@@ -1,6 +1,6 @@
-const { Sequelize, sequelize } = require('./db'); 
+const { Sequelize, sequelize } = require('../db'); 
 
-let Cheese = describe('cheese', {
+let Cheese = sequelize.define('cheese', {
     title: Sequelize.STRING, 
     description: Sequelize.STRING
 })
