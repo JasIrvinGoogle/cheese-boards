@@ -46,4 +46,43 @@ describe('User, Board & Cheese Models', () => {
         expect(board2.description).toEqual('A variety of cheeses - from french cheeses to american');
         expect(board2.rating).toEqual(10); 
     })
+
+    // Read Test - CRUD
+    test('Can Read User - Find User Test', async () => {
+        const readUser1 = await User.findAll(); 
+        expect(readUser1[0].name).toEqual('Jasmine');
+        expect(readUser1[0].email).toEqual('jasmine@testemail.com');
+    })
+
+    test('Can Read User 2 - Find User Test', async () => {
+        const readUser2 = await User.findAll(); 
+        expect(readUser2[1].name).toEqual('Charlie');
+        expect(readUser2[1].email).toEqual('charlie@email.com'); 
+    })
+
+    test('Can Read Cheese - Find Cheese Test', async () => {
+        const readCheese1 = await Cheese.findAll(); 
+        expect(readCheese1[0].title).toEqual('American');
+        expect(readCheese1[0].description).toEqual('American is a creamy, smooth cheese made from blending natural cheeses. It comes in several forms including individually wrapped cheese slices, small pre-sliced blocks and large blocks. It melts well.');
+    })
+
+    test('Can Read Cheese 2 - Find Cheese Test', async () => {
+        const readCheese2 = await Cheese.findAll(); 
+        expect(readCheese2[1].title).toEqual('Asiago');
+        expect(readCheese2[1].description).toEqual('Asiago, a nutty-flavored cheese, comes in two forms: fresh and mature. The fresh has an off-white color and is smoother and milder, while mature Asiago is yellowish and somewhat crumbly. Depending on its age, Asiago can be grated, melted or sliced.');
+    })
+
+    test('Can Read Board - Read Board Test', async () => {
+        const readBoard1 = await Board.findAll(); 
+        expect(readBoard1[0].type).toEqual('Rich Flavor Board');
+        expect(readBoard1[0].description).toEqual('Featuring rich cheese flavors and strong tastes');
+        expect(readBoard1[0].rating).toEqual(7);
+    })
+
+    test('Can Read Board 2 - Read Board Test', async () => {
+        const readBoard2 = await Board.findAll();
+        expect(readBoard2[1].type).toEqual('Variety Cheese Board');
+        expect(readBoard2[1].description).toEqual('A variety of cheeses - from french cheeses to american');
+        expect(readBoard2[1].rating).toEqual(10); 
+    })
 })
