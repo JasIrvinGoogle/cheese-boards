@@ -6,6 +6,7 @@ const { Cheese } = require('./models/Cheese');
 
 User.hasMany(Board) // one user to many boards
 Board.belongsTo(User) //user required to have a board - board has to belong to a user
+Cheese.belongsToMany(Board) //cheese can be on multiple boards - unsure if this is correct
 
 
 
