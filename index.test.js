@@ -140,4 +140,59 @@ describe('User, Board & Cheese Models', () => {
         expect(deletedBoard.description).toBe('Crazy Cheeses');
         expect(deletedBoard.rating).toBe(4);
     })
+
+    //Associations Tests
+    test('User can have many boards', async () => {
+        await sequelize.sync({force: true}); //reset/recreate the db
+        let user3 = await User.create(userData[0]); 
+        let newBoard1 = await Board.create(boardData[0]); 
+        let newBoard2 = await Board.create(boardData[1]); 
+
+        await user3.addBoard(newBoard1);
+        await user3.addBoard(newBoard2); 
+
+        const variety = await user3.getBoards(); 
+
+        expect(variety.length).toBe(2); 
+        expect(variety[0] instanceof Board).toBeTruthy; 
+    })
+
+    test('Board can have many cheeses', async () => {
+        await sequelize.sync({force: true}); //reload db
+        await User.create(userData[0]); 
+        let newBoard1 = await Board.create(boardData[0]); 
+        await Board.create(boardData[1]); 
+
+        let cheese1 = await Cheese.create(cheeseData[0]);
+        let cheese2 = await Cheese.create(cheeseData[1]);
+        let cheese3 = await Cheese.create(cheeseData[2]); 
+        let cheese4 = await Cheese.create(cheeseData[3]); 
+
+        await newBoard1.addCheese(cheese1); 
+        await newBoard1.addCheese(cheese2);
+        await newBoard1.addCheese(cheese3);
+        await newBoard1.addCheese(cheese4);
+
+        const cardVariety = await newBoard1.getCheeses(); 
+        expect(cardVariety.length).toBe(4);
+    })
+
+    //Eager Loading
+    test('Cheese can be eager loaded with boards', async () => {
+        await sequelize.sync({force: true}); //reload db
+        await User.create(userData[0]); 
+        let newBoard1 = await Board.create(boardData[0]); 
+        await Board.create(boardData[1]); 
+
+        let cheese1 = await Cheese.create(cheeseData[0]); 
+        let cheese2 = await Cheese.create(cheeseData[1]); 
+
+        await newBoard1.addCheese(cheese1); 
+        await newBoard1.addCheese(cheese2); 
+
+        const variety = await Board.findAll({
+            include: [{model: Cheese, as: 'cheeses'}]
+        })
+        expect(variety[0].cheeses.length).toBe(2); 
+    })
 })
